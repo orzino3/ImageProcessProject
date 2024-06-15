@@ -26,7 +26,7 @@ public class MainPanel extends JPanel {
         g.drawImage(this.backgroundImage, 0, 0, this);
         g.setColor(Color.white);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("Image process Project", (this.getWidth() / 3) - MainWindow.ERROR_MARGIN, 50);
+        g.drawString("Image Process Project", (this.getWidth() / 3) - MainWindow.ERROR_MARGIN, 50);
     }
 
     public Image getBackgroundImage() {
