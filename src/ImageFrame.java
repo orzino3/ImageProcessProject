@@ -8,6 +8,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageFrame extends JFrame {
+
+    //Creating a String Array of filter names
+    final String[] filters = {"Choose Filter", "Original", "Negative", "Show Borders", "Gray Scale", "Tint", "Shift Right", "Shift Left", "Sepia", "Mirror", "Noise", "Vintage","Darker","Lighter"};
+
     public ImageFrame(File fileToProcess) {
 
         if (fileToProcess.exists()) {
@@ -15,51 +19,15 @@ public class ImageFrame extends JFrame {
                 BufferedImage bufferedImage = ImageIO.read(fileToProcess);
                 ImagePanel displayImage = new ImagePanel(bufferedImage);
 
-                // יצירת JComboBox עם הפריטים
-                String[] filters = {"בחר פילטר", "תמונה מקורית", "Negative", "Draw Borders","Gray Scale","Tint","Posterize"};
-                JComboBox<String> filterBox = new JComboBox<>(filters);
+                JComboBox<String> filterBox = getStringComboBox(filters, displayImage);
 
-                // הוספת ActionListener ל-JComboBox
-                filterBox.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String selectedItem = (String) filterBox.getSelectedItem();
-                        if (selectedItem!=null) {
-                            switch (selectedItem) {
-                                case "תמונה מקורית":
-                                    displayImage.showOriginal();
-                                    break;
-                                case "Negative":
-                                    displayImage.applyNegative();
-                                    break;
-                                case "Draw Borders":
-                                    displayImage.applyDrawBorders();
-                                    break;
-
-                                case "Gray Scale":
-                                    displayImage.applyGrayScale();
-                                    break;
-
-                                case "Tint":
-                                    displayImage.applyTint();
-                                    break;
-
-                                case "Posterize":
-                                    displayImage.applySketch();
-                                    break;
-                            }
-                        }
-                    }
-                });
-
-                // הוספת JComboBox ו-ImagePanel ל-JFrame
                 this.setLayout(new BorderLayout());
-                this.add(filterBox, BorderLayout.NORTH);
+                this.add(filterBox, BorderLayout.SOUTH);
                 this.add(displayImage, BorderLayout.CENTER);
                 this.setTitle("Image Process Project");
                 this.setIconImage(new ImageIcon(getClass().getResource("/Images/iconforproject.png")).getImage());
                 this.setLocationRelativeTo(null);
-
+                this.setResizable(false);
                 this.pack();
                 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 this.setVisible(true);
@@ -70,6 +38,62 @@ public class ImageFrame extends JFrame {
         } else {
             System.out.println("File does not exist: " + fileToProcess.getAbsolutePath());
         }
+    }
+
+    private static JComboBox<String> getStringComboBox(String[] filters, ImagePanel displayImage) {
+        JComboBox<String> filterBox = new JComboBox<>(filters);
+
+        filterBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) filterBox.getSelectedItem();
+                System.out.println("Current Filter is: "+ selectedItem);
+                if (selectedItem != null) {
+                    switch (selectedItem) {
+                        case "Original":
+                            displayImage.showOriginal();
+                            break;
+                        case "Negative":
+                            displayImage.applyNegative();
+                            break;
+                        case "Show Borders":
+                            displayImage.applyShowBorders();
+                            break;
+                        case "Gray Scale":
+                            displayImage.applyGrayScale();
+                            break;
+                        case "Tint":
+                            displayImage.applyTint();
+                            break;
+                        case "Shift Right":
+                            displayImage.applyShiftRight();
+                            break;
+                        case "Shift Left":
+                            displayImage.applyShiftLeft();
+                            break;
+                        case "Sepia":
+                            displayImage.applySepia();
+                            break;
+                        case "Mirror":
+                            displayImage.applyMirror();
+                            break;
+                        case "Noise":
+                            displayImage.applyNoise();
+                            break;
+                        case "Vintage":
+                            displayImage.applyVintage();
+                            break;
+                        case "Darker":
+                            displayImage.applyDarker();
+                            break;
+                        case "Lighter":
+                            displayImage.applyLighter();
+                            break;
+                    }
+                }
+            }
+        });
+        return filterBox;
     }
 
 }
