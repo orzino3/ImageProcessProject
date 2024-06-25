@@ -180,11 +180,12 @@ public class ImagePanel extends JPanel {
     }
 
     private BufferedImage tintImage(BufferedImage bufferedImage) {
+        final int constant = 100;
         for (int x = 0; x < bufferedImage.getWidth(); x++) {
             for (int y = 0; y < bufferedImage.getHeight(); y++) {
                 Color color = new Color(bufferedImage.getRGB(x, y));
                 int average = (color.getRed() + color.getGreen() + color.getBlue()) / 3;
-                Color newColor = new Color(255, average, average);
+                Color newColor = new Color(average, Math.min(255,average+constant), average);
                 bufferedImage.setRGB(x, y, newColor.getRGB());
             }
         }
