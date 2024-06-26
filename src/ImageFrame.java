@@ -26,9 +26,9 @@ public class ImageFrame extends JFrame {
                 this.add(displayImage, BorderLayout.CENTER);
                 this.setTitle("Image Process Project");
                 this.setIconImage(new ImageIcon(getClass().getResource("/Images/iconforproject.png")).getImage());
-                this.setLocationRelativeTo(null);
                 this.setResizable(false);
                 this.pack();
+                this.setLocationRelativeTo(null);
                 this.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 this.setVisible(true);
 
