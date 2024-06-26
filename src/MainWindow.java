@@ -39,7 +39,7 @@ public class MainWindow extends JFrame {
                 //Filter type of files in JFileChoose using FileNameExtensionFilter class
                 File initialPath = new File("C:\\");
                 JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("Jpeg & PNG Images", "jpg", "png", "gif");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & PNG & GIF Images", "jpg", "png", "gif");
                 fileChooser.setFileFilter(filter);
                 fileChooser.setCurrentDirectory(initialPath);
                 fileChooser.setDialogTitle("Select a file");
