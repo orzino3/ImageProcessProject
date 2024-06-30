@@ -58,12 +58,6 @@ public class ImagePanel extends JPanel {
         repaint();
     }
 
-    public void applyShowBorders() {
-        this.currentFilter = "Show Borders";
-        this.manipulatedImage = showBorders(cloneImage(originalImage));
-        repaint();
-    }
-
     public void applyGrayScale() {
         this.currentFilter = "Gray Scale";
         this.manipulatedImage = grayScale(cloneImage(originalImage));
@@ -137,34 +131,6 @@ public class ImagePanel extends JPanel {
             }
         }
         return bufferedImage;
-    }
-
-    private BufferedImage showBorders(BufferedImage bufferedImage) {
-        int threshold = 70;
-        for (int x = 0; x < bufferedImage.getWidth() - 1; x++) {
-            for (int y = 0; y < bufferedImage.getHeight() - 1; y++) {
-                Color currentPixel = new Color(bufferedImage.getRGB(x, y));
-                boolean isBorder = isBorderPixel(bufferedImage, x, y, currentPixel, threshold);
-                bufferedImage.setRGB(x, y, isBorder ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
-            }
-        }
-        return bufferedImage;
-    }
-
-    private boolean isBorderPixel(BufferedImage bufferedImage, int x, int y, Color currentPixel, int threshold) {
-        Color rightNeighbor = new Color(bufferedImage.getRGB(x + 1, y));
-        int totalDiff = getTotalColorDifference(currentPixel, rightNeighbor);
-        if (totalDiff > threshold) return true;
-        Color downNeighbor = new Color(bufferedImage.getRGB(x, y + 1));
-        totalDiff = getTotalColorDifference(currentPixel, downNeighbor);
-        return totalDiff > threshold;
-    }
-
-    private int getTotalColorDifference(Color color1, Color color2) {
-        int redDiff = Math.abs(color1.getRed() - color2.getRed());
-        int greenDiff = Math.abs(color1.getGreen() - color2.getGreen());
-        int blueDiff = Math.abs(color1.getBlue() - color2.getBlue());
-        return redDiff + greenDiff + blueDiff;
     }
 
     private BufferedImage grayScale(BufferedImage bufferedImage) {
