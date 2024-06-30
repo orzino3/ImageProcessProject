@@ -56,9 +56,6 @@ public class ImageFrame extends JFrame {
                         case "Negative":
                             displayImage.applyNegative();
                             break;
-                        case "Show Borders":
-                            displayImage.applyShowBorders();
-                            break;
                         case "Gray Scale":
                             displayImage.applyGrayScale();
                             break;
