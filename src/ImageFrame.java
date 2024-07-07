@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ImageFrame extends JFrame {
 
     //Creating a String Array of filter names
-    final String[] filters = {"Choose Filter", "Original", "Negative", "Gray Scale", "Tint", "Shift Right", "Shift Left", "Sepia", "Mirror", "Noise", "Vintage","Darker","Lighter"};
+    final String[] filters = {"Original", "Negative", "Gray Scale", "Tint", "Shift Right", "Shift Left", "Sepia", "Mirror", "Noise", "Vintage","Darker","Lighter"};
 
     public ImageFrame(File fileToProcess) {
 
